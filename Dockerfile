@@ -1,7 +1,7 @@
 FROM node:10-alpine
 
 # For some extra dependencies...
-RUN apk add --no-cache dumb-init git bash python ssh-client
+RUN apk add --no-cache dumb-init git bash python
 
 # This is required to build some of the webapp modules
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
