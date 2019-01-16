@@ -28,23 +28,28 @@ const pkg = require('../package');
 const [defaultGitConfigurationUrl, defaultGitConfigurationVersion] = pkg.dependencies['wire-web-config-default'].split(
   '#'
 );
+
 const gitConfigurationUrl = process.env.WIRE_CONFIGURATION_REPOSITORY || defaultGitConfigurationUrl;
 const gitConfigurationVersion = process.env.WIRE_CONFIGURATION_REPOSITORY_VERSION || defaultGitConfigurationVersion;
+const configDirName = process.env.WIRE_EXTERNAL_CONFIGURATION_DIR || 'config';
 
 console.log(
   `Loading configuration version "${gitConfigurationVersion}" for project "${pkg.name}" from "${gitConfigurationUrl}"`
 );
 
-const configDirName = 'config';
 const configDir = resolve(configDirName);
 const src = resolve(configDir, pkg.name, 'content');
 const projectDir = resolve('./');
 const dest = resolve(projectDir, 'resource');
 const ignoreList = ['.DS_Store'];
 
-console.log(`Cleaning config directory "${configDir}"`);
-fs.removeSync(configDir);
-execSync(`git clone -b ${gitConfigurationVersion} ${gitConfigurationUrl} ${configDirName}`, {stdio: [0, 1]});
+if(process.env.WIRE_EXTERNAL_CONFIGURATION_DIR === undefined) {
+  console.log(`Cleaning config directory "${configDir}"`);
+  fs.removeSync(configDir);
+  execSync(`git clone -b ${gitConfigurationVersion} ${gitConfigurationUrl} ${configDirName}`, {stdio: [0, 1]});
+} else {
+  console.log(`Using external config directory "${configDir}"`);
+}
 
 // Copy .env file configuration
 fs.copySync(resolve(configDir, pkg.name, '.env'), resolve(projectDir, '.env'));
