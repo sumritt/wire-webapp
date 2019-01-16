@@ -6,8 +6,6 @@ RUN apk add --no-cache dumb-init git bash python
 # This is required to build some of the webapp modules
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
 
-RUN ls -la
-
 COPY . /src
 ENV NODE_PATH=/src/node_modules
 ENV PATH=$PATH:/src/node_modules/.bin
@@ -22,7 +20,7 @@ WORKDIR /src
 #RUN yarn && yarn configure
 #RUN yarn && yarn build:prod
 
-RUN ls -la
+RUN ls -la /src/config
 
 EXPOSE 8080
 
