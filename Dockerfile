@@ -17,7 +17,8 @@ ARG WIRE_CONFIGURATION_EXTERNAL_DIR
 RUN echo "Value of WIRE_CONFIGURATION_EXTERNAL_DIR is ${WIRE_CONFIGURATION_EXTERNAL_DIR}"
 
 WORKDIR /src
-#RUN yarn && yarn configure
+RUN ls -la /src/config
+RUN yarn && yarn configure
 #RUN yarn && yarn build:prod
 
 RUN ls -la /src/config
