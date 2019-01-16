@@ -31,7 +31,7 @@ const [defaultGitConfigurationUrl, defaultGitConfigurationVersion] = pkg.depende
 
 const gitConfigurationUrl = process.env.WIRE_CONFIGURATION_REPOSITORY || defaultGitConfigurationUrl;
 const gitConfigurationVersion = process.env.WIRE_CONFIGURATION_REPOSITORY_VERSION || defaultGitConfigurationVersion;
-const configDirName = process.env.WIRE_EXTERNAL_CONFIGURATION_DIR || 'config';
+const configDirName = process.env.WIRE_CONFIGURATION_EXTERNAL_DIR || 'config';
 
 console.log(
   `Loading configuration version "${gitConfigurationVersion}" for project "${pkg.name}" from "${gitConfigurationUrl}"`
@@ -43,7 +43,7 @@ const projectDir = resolve('./');
 const dest = resolve(projectDir, 'resource');
 const ignoreList = ['.DS_Store'];
 
-if(process.env.WIRE_EXTERNAL_CONFIGURATION_DIR === undefined) {
+if(process.env.WIRE_CONFIGURATION_EXTERNAL_DIR === undefined) {
   console.log(`Cleaning config directory "${configDir}"`);
   fs.removeSync(configDir);
   execSync(`git clone -b ${gitConfigurationVersion} ${gitConfigurationUrl} ${configDirName}`, {stdio: [0, 1]});
