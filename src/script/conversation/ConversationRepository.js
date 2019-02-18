@@ -25,6 +25,7 @@ import PromiseQueue from 'utils/PromiseQueue';
 import EventMapper from './EventMapper';
 import ConversationMapper from './ConversationMapper';
 import {t, Declension, joinNames} from 'utils/LocalizerUtil';
+import TimeUtil from 'utils/TimeUtil';
 
 import AssetMetaDataBuilder from '../assets/AssetMetaDataBuilder';
 
@@ -35,7 +36,7 @@ window.z.conversation = z.conversation || {};
 z.conversation.ConversationRepository = class ConversationRepository {
   static get CONFIG() {
     return {
-      CONFIRMATION_THRESHOLD: z.util.TimeUtil.UNITS_IN_MILLIS.WEEK,
+      CONFIRMATION_THRESHOLD: TimeUtil.UNITS_IN_MILLIS.WEEK,
       EXTERNAL_MESSAGE_THRESHOLD: 200 * 1024,
       GROUP: {
         MAX_NAME_LENGTH: 64,
@@ -2739,7 +2740,7 @@ z.conversation.ConversationRepository = class ConversationRepository {
       })
       .then(() => this.send_asset_remotedata(conversation_et, file, message_id))
       .then(() => {
-        const upload_duration = (Date.now() - upload_started) / z.util.TimeUtil.UNITS_IN_MILLIS.SECOND;
+        const upload_duration = (Date.now() - upload_started) / TimeUtil.UNITS_IN_MILLIS.SECOND;
         this.logger.info(`Finished to upload asset for conversation'${conversation_et.id} in ${upload_duration}`);
       })
       .catch(error => {
@@ -3884,7 +3885,7 @@ z.conversation.ConversationRepository = class ConversationRepository {
 
     if (isEphemeral) {
       genericMessage = genericMessage.ephemeral;
-      messageTimer = genericMessage.expire_after_millis / z.util.TimeUtil.UNITS_IN_MILLIS.SECOND;
+      messageTimer = genericMessage.expire_after_millis / TimeUtil.UNITS_IN_MILLIS.SECOND;
     }
 
     const messageContentType = genericMessage.content;

@@ -17,14 +17,15 @@
  *
  */
 
-import Logger from 'utils/Logger';
-
 import moment from 'moment';
 import $ from 'jquery';
 import {groupBy} from 'underscore';
 /* eslint-disable no-unused-vars */
 import mousewheel from 'jquery-mousewheel';
 /* eslint-enable no-unused-vars */
+
+import TimeUtil from 'utils/TimeUtil';
+import Logger from 'utils/Logger';
 
 window.z = window.z || {};
 window.z.viewModel = z.viewModel || {};
@@ -152,7 +153,7 @@ z.viewModel.content.MessageListViewModel = class MessageListViewModel {
         window.setTimeout(() => {
           this.conversation_repository.markAsRead(this.mark_as_read_on_focus);
           this.mark_as_read_on_focus = undefined;
-        }, z.util.TimeUtil.UNITS_IN_MILLIS.SECOND);
+        }, TimeUtil.UNITS_IN_MILLIS.SECOND);
       }
     });
 

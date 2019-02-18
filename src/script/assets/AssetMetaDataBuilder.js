@@ -17,6 +17,8 @@
  *
  */
 
+import TimeUtil from 'utils/TimeUtil';
+
 /**
  * Constructs corresponding asset metadata depending on the given file type
  * @param {File|Blob} file - the file to generate metadata for
@@ -48,7 +50,7 @@ const buildMetadataAudio = audioFile => {
       return audioContext.decodeAudioData(buffer);
     })
     .then(audioBuffer => {
-      const durationInMillis = audioBuffer.duration * z.util.TimeUtil.UNITS_IN_MILLIS.SECOND;
+      const durationInMillis = audioBuffer.duration * TimeUtil.UNITS_IN_MILLIS.SECOND;
       return new z.proto.Asset.AudioMetaData(durationInMillis, normaliseLoudness(audioBuffer));
     });
 };

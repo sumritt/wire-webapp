@@ -19,6 +19,10 @@
 
 import Logger from 'utils/Logger';
 
+/* eslint-disable no-unused-vars */
+import TimeUtil from 'utils/TimeUtil';
+/* eslint-enable no-unused-vars */
+
 import AbstractAssetTransferStateTracker from './AbstractAssetTransferStateTracker';
 
 class AudioAssetComponent extends AbstractAssetTransferStateTracker {
@@ -116,7 +120,7 @@ ko.components.register('audio-asset', {
           <!-- ko if: transferState() !== z.assets.AssetTransferState.UPLOADING -->
             <span class="audio-controls-time label-xs"
                   data-uie-name="status-audio-time"
-                  data-bind="text: z.util.TimeUtil.formatSeconds(audio_time())">
+                  data-bind="text: TimeUtil.formatSeconds(audio_time())">
             </span>
             <!-- ko if: show_loudness_preview -->
               <audio-seek-bar data-uie-name="status-audio-seekbar"

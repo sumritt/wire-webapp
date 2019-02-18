@@ -18,6 +18,7 @@
  */
 
 import Logger from 'utils/Logger';
+import TimeUtil from 'utils/TimeUtil';
 
 export default class CryptographyMapper {
   static get CONFIG() {
@@ -210,7 +211,7 @@ export default class CryptographyMapper {
     if (audioData) {
       const loudnessArray = audioData.normalized_loudness ? audioData.normalized_loudness.toArrayBuffer() : [];
       const durationInSeconds = audioData.duration_in_millis
-        ? audioData.duration_in_millis / z.util.TimeUtil.UNITS_IN_MILLIS.SECOND
+        ? audioData.duration_in_millis / TimeUtil.UNITS_IN_MILLIS.SECOND
         : 0;
 
       return {

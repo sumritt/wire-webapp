@@ -18,7 +18,7 @@
  */
 
 import Logger from 'utils/Logger';
-
+import TimeUtil from 'utils/TimeUtil';
 import {t} from 'utils/LocalizerUtil';
 
 window.z = window.z || {};
@@ -58,7 +58,7 @@ z.viewModel.content.PreferencesDeviceDetailsViewModel = class PreferencesDeviceD
   }
 
   _updateActivationTime(time) {
-    const formattedTime = z.util.TimeUtil.formatTimestamp(time);
+    const formattedTime = TimeUtil.formatTimestamp(time);
     const stringTemplate = t('preferencesDevicesActivatedOn');
     const sanitizedText = z.util.StringUtil.splitAtPivotElement(stringTemplate, '{{date}}', formattedTime);
     this.activationDate(sanitizedText);

@@ -26,6 +26,8 @@ import {t} from 'utils/LocalizerUtil';
 import ConsentValue from './ConsentValue';
 import ConsentType from './ConsentType';
 
+import TimeUtil from 'utils/TimeUtil';
+
 import User from '../entity/User';
 import UserMapper from './UserMapper';
 
@@ -78,7 +80,7 @@ export default class UserRepository {
           .filter(user_et => user_et.isConnected())
           .sort((user_a, user_b) => z.util.StringUtil.sortByPriority(user_a.first_name(), user_b.first_name()));
       })
-      .extend({rateLimit: z.util.TimeUtil.UNITS_IN_MILLIS.SECOND});
+      .extend({rateLimit: TimeUtil.UNITS_IN_MILLIS.SECOND});
 
     this.isActivatedAccount = ko.pureComputed(() => this.self() && !this.self().isTemporaryGuest());
     this.isTemporaryGuest = ko.pureComputed(() => this.self() && this.self().isTemporaryGuest());

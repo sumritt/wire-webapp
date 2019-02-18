@@ -18,6 +18,7 @@
  */
 
 import Logger from 'utils/Logger';
+import TimeUtil from 'utils/TimeUtil';
 
 window.z = window.z || {};
 window.z.entity = z.entity || {};
@@ -100,7 +101,7 @@ z.entity.File = class File extends z.entity.Asset {
     return this.load()
       .then(blob => z.util.downloadBlob(blob, this.file_name))
       .then(() => {
-        const download_duration = (Date.now() - download_started) / z.util.TimeUtil.UNITS_IN_MILLIS.SECOND;
+        const download_duration = (Date.now() - download_started) / TimeUtil.UNITS_IN_MILLIS.SECOND;
         this.logger.info(`Downloaded asset in ${download_duration} seconds`);
       })
       .catch(error => this.logger.error('Failed to download asset', error));

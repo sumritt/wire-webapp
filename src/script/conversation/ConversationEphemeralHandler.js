@@ -18,6 +18,7 @@
  */
 
 import Logger from 'utils/Logger';
+import TimeUtil from 'utils/TimeUtil';
 
 window.z = window.z || {};
 window.z.conversation = z.conversation || {};
@@ -26,10 +27,10 @@ z.conversation.ConversationEphemeralHandler = class ConversationEphemeralHandler
   .AbstractConversationEventHandler {
   static get CONFIG() {
     return {
-      INTERVAL_TIME: z.util.TimeUtil.UNITS_IN_MILLIS.SECOND * 0.25,
+      INTERVAL_TIME: TimeUtil.UNITS_IN_MILLIS.SECOND * 0.25,
       TIMER_RANGE: {
-        MAX: z.util.TimeUtil.UNITS_IN_MILLIS.YEAR,
-        MIN: z.util.TimeUtil.UNITS_IN_MILLIS.SECOND,
+        MAX: TimeUtil.UNITS_IN_MILLIS.YEAR,
+        MIN: TimeUtil.UNITS_IN_MILLIS.SECOND,
       },
     };
   }

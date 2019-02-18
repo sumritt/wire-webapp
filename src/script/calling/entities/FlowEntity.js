@@ -18,6 +18,7 @@
  */
 
 import MediaStreamHandler from '../../media/MediaStreamHandler';
+import TimeUtil from 'utils/TimeUtil';
 
 window.z = window.z || {};
 window.z.calling = z.calling || {};
@@ -28,10 +29,10 @@ z.calling.entities.FlowEntity = class FlowEntity {
     return {
       DATA_CHANNEL_LABEL: 'calling-3.0',
       MAX_ICE_CANDIDATE_GATHERING_ATTEMPTS: 5,
-      NEGOTIATION_THRESHOLD: 0.5 * z.util.TimeUtil.UNITS_IN_MILLIS.SECOND,
-      RECONNECTION_TIMEOUT: 2.5 * z.util.TimeUtil.UNITS_IN_MILLIS.SECOND,
-      RENEGOTIATION_TIMEOUT: 30 * z.util.TimeUtil.UNITS_IN_MILLIS.SECOND,
-      SDP_SEND_TIMEOUT: z.util.TimeUtil.UNITS_IN_MILLIS.SECOND,
+      NEGOTIATION_THRESHOLD: 0.5 * TimeUtil.UNITS_IN_MILLIS.SECOND,
+      RECONNECTION_TIMEOUT: 2.5 * TimeUtil.UNITS_IN_MILLIS.SECOND,
+      RENEGOTIATION_TIMEOUT: 30 * TimeUtil.UNITS_IN_MILLIS.SECOND,
+      SDP_SEND_TIMEOUT: TimeUtil.UNITS_IN_MILLIS.SECOND,
     };
   }
 

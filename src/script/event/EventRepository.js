@@ -20,6 +20,7 @@
 import Logger from 'utils/Logger';
 
 import {t} from 'utils/LocalizerUtil';
+import TimeUtil from 'utils/TimeUtil';
 
 window.z = window.z || {};
 window.z.event = z.event || {};
@@ -27,7 +28,7 @@ window.z.event = z.event || {};
 z.event.EventRepository = class EventRepository {
   static get CONFIG() {
     return {
-      E_CALL_EVENT_LIFETIME: z.util.TimeUtil.UNITS_IN_MILLIS.SECOND * 30,
+      E_CALL_EVENT_LIFETIME: TimeUtil.UNITS_IN_MILLIS.SECOND * 30,
       IGNORED_ERRORS: [
         z.error.CryptographyError.TYPE.IGNORED_ASSET,
         z.error.CryptographyError.TYPE.IGNORED_PREVIEW,

@@ -18,7 +18,7 @@
  */
 
 import Logger from 'utils/Logger';
-
+import TimeUtil from 'utils/TimeUtil';
 import {t} from 'utils/LocalizerUtil';
 
 window.z = window.z || {};
@@ -88,7 +88,7 @@ z.viewModel.content.PreferencesOptionsViewModel = class PreferencesOptionsViewMo
 
       const selfUserId = this.userRepository.self().id;
       const truncatedId = selfUserId.substr(0, z.telemetry.calling.CallLogger.CONFIG.OBFUSCATION_TRUNCATE_TO);
-      const filename = `Wire-${truncatedId}-Calling_${z.util.TimeUtil.getCurrentDate()}.log`;
+      const filename = `Wire-${truncatedId}-Calling_${TimeUtil.getCurrentDate()}.log`;
 
       return z.util.downloadBlob(blob, filename);
     }
