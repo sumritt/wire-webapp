@@ -47,17 +47,10 @@ const configureStore = (thunkArguments: object = {}) => {
 };
 
 const createLoggerMiddleware = () => {
-  let localStorage;
-  try {
-    localStorage = window.localStorage;
-  } catch (error) {}
-
-  if (localStorage) {
-    localStorage.removeItem('debug');
-  }
-
-  if (!Environment.isEnvironment(Environment.ENVIRONMENT.PRODUCTION) && localStorage) {
+  if (new URL(window.location.href).searchParams.get('enableLogging') === 'true') {
     localStorage.setItem('debug', '@wireapp/*');
+  } else {
+    localStorage.removeItem('debug');
   }
 
   return reduxLogdown(LOGGER_NAMESPACE, {diff: true});
